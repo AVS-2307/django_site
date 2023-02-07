@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ news_item.title }} : {{ block.super }} <!-- переопределение блока title. block.super - наследуем название из base.html -->
+{% endblock %}
+{% block sidebar %}
+    {% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="card mb-3"> <!-- mb - отступ новостей друг от друга -->
+        <div class="card-header">
+            Категория: <a href="{{ news_item.category.get_absolute_url }}">{{ news_item.category }}</a>
+            <p class="text-right">
+            {{ news_item.created_at|date:"Y-m-d H:i:s" }}
+            </p>
+
+        </div>
+        </div> <!-- выводим категорию, которая создана как связь один ко многим -->
+        <div class="card-body">
+                {% if item.photo %}
+                    <img src="{{ news_item.photo.url }}" alt="" width="350" class="float-left mr-3"> <!-- вставка фото -->
+                {% else %}
+                    <img src="https://mirpozitiva.ru/wp-content/uploads/2019/11/1472043884_02.jpg" alt="" width="350"
+                         class=" float-left mr-3">
+                {% endif %}
+
+
+                    <h5 class="card-title">{{ news_item.title }}</h5>
+                    <p class="card-text">{{ news_item.content|safe|linebreaks }} </p> <!-- linebreaks - фильтр для переноса строк -->
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
