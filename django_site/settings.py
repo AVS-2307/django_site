@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-ROOT_URLCONF = 'django_video_lessons.urls'
+ROOT_URLCONF = 'django_site.urls'
 
 TEMPLATES = [
     {
